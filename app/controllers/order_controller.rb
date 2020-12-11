@@ -1,6 +1,7 @@
 class OrderController < ApplicationController
       get '/orders' do
-        @orders = order.all
+        @orders = Order.where(:server_id => current_server[:id])
+        
         erb :'/orders/index' 
       end
     
@@ -10,9 +11,8 @@ class OrderController < ApplicationController
     
       post '/orders' do 
         @order = current_server.orders.build(params)
-        
         @order.save
-        redirect to "/servers/#{@current_server.id}"
+        redirect to "/servers/#{current_server.id}"
       end
     
       get '/orders/:id' do 

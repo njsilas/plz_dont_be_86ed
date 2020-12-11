@@ -19,10 +19,17 @@ class ApplicationController < Sinatra::Base
   
   helpers do
     def current_server
-      @current_server ||= Server.find_by(:id => session[:user_id]) if session[:id]
+      @current_server ||= Server.find_by(:id => session[:server_id]) if session[:server_id]
     end
     def is_logged_in?
       !!current_server
     end
+  end
+  def present_time
+    x = Time.new
+     x.strftime("%I:%M %p") 
+  end
+  def servers_orders
+    
   end
 end

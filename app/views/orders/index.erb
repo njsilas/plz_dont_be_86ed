@@ -1,0 +1,8 @@
+<p><%= current_server.name %>'s orders
+<h2> Drinks </h2>
+
+<% @orders.each do |order| %>
+  <div>
+    <%= order.drink %>
+  </div>
+<% end %>
