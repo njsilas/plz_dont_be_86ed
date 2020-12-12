@@ -3,6 +3,6 @@
 
 <% @orders.each do |order| %>
   <div>
-    <%= order.drink %>
+    <li> <a href="/orders/<%= order.id%>"> <%= order.drink %> </a></li>
   </div>
 <% end %>

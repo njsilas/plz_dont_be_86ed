@@ -1,0 +1,8 @@
+<p><%= @order.drink %>
+
+<form method="post" action="/orders/<%=@order.id%>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Cash Out Order">
+</form>
+
+<a href="/orders/<%=@order.id%>/edit">Edit Order </a>

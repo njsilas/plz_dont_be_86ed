@@ -27,14 +27,19 @@ class ServerController < ApplicationController
     end
   end
   post '/servers/new' do
+   
+   
     server = Server.new(params)
     if server.password.blank? || server.name.blank?
       redirect to '/servers/new'
     else
        server.save
        session[:server_id] = server.id
-      
-       redirect to '/servers/:id'
+       if !!current_server
+        redirect to '/servers/:id'
+       else
+        redirect to '/servers/new'
+       end
     end
   end
     #get '/servers' do
