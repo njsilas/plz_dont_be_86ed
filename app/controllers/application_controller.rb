@@ -7,8 +7,12 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "work_in_progress"
+    set :show_exceptions, true
   end
-
+  not_found do
+    status 404
+    erb :'/error'
+  end
   get "/" do
     redirect to '/home'
   end
@@ -16,7 +20,9 @@ class ApplicationController < Sinatra::Base
     erb :'/home'
   end
   
-  
+  error ActiveRecord::RecordNotFound do
+    erb :'/error'
+  end
   helpers do
     def current_server
       @current_server ||= Server.find_by(:id => session[:server_id]) if session[:server_id]
@@ -29,7 +35,5 @@ class ApplicationController < Sinatra::Base
     x = Time.new
      x.strftime("%I:%M %p") 
   end
-  def servers_orders
-    
-  end
+
 end

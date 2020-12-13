@@ -11,7 +11,11 @@ class OrderController < ApplicationController
       end
     
       get '/orders/new' do 
+        if is_logged_in?
         erb :'/orders/new'
+        else
+          redirect to '/home'
+        end
       end
     
       post '/orders' do 
@@ -24,7 +28,7 @@ class OrderController < ApplicationController
       end
     end
       get '/orders/:id' do  
-        @order = Order.find(params[:id])
+        @order = Order.find_by_id(params[:id])
         if current_server[:id] == @order[:server_id]
         erb :'/orders/show'
         else
@@ -45,12 +49,13 @@ class OrderController < ApplicationController
       end
       patch '/orders/:id' do 
         if is_logged_in?
-          if params[:drink] == "" || params[:tbl_num] == ""
+        
+          if params[:drink] == "" || params[:tbl_num] == "" || params[:quantity] == ""
             redirect to "/orders/#{params[:id]}/edit"
           else
             @order = Order.find_by_id(params[:id])
             if @order && @order.server_id == current_server[:id]
-              if @order.update(drink: params[:drink])
+              if @order.update(drink: params[:drink], tbl_num: params[:tbl_num], quantity: params[:quantity])
                 redirect to "/servers/:id"
               else
                 redirect to "/orders/#{@order.id}/edit"
