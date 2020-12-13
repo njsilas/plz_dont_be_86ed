@@ -2,6 +2,9 @@
 
 <form method="post" action="/orders/<%=@order.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
+  <label for="order">Order</label>
   <input type="text" name="drink" value="<%= @order.drink %>">
+  <label for="order">Table Number</label>
+  <input type="integer" name="tbl_num" value="<%= @order.tbl_num %>">
   <input type="submit" value="submit">
 </form>

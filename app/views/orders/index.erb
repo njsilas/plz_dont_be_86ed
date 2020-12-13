@@ -3,6 +3,6 @@
 
 <% @orders.each do |order| %>
   <div>
-    <li> <a href="/orders/<%= order.id%>"> <%= order.drink %> </a></li>
+    <li> <a href="/orders/<%= order.id%>"> Table <%= order.tbl_num %>: <%= order.drink %> </a></li>
   </div>
 <% end %>
