@@ -7,14 +7,14 @@ class ServerController < ApplicationController
    if !is_logged_in?
     erb  :'/servers/log_in'
    else
-    redirect to '/servers/:id'
+    redirect to "/servers/#{server.id}"
    end
  end
   post '/log_in' do
     server = Server.find_by_name(params[:name])
     if server && server.authenticate(params[:password])
       session[:server_id] = server.id
-      redirect to '/servers/:id'
+      redirect to "/servers/#{server.id}"
     else
       
       
@@ -38,27 +38,13 @@ class ServerController < ApplicationController
        server.save
        session[:server_id] = server.id
        if !!current_server
-        redirect to '/servers/:id'
+        redirect to "/servers/#{server.id}"
        else
         redirect to '/servers/new'
        end
     end
   end
-    #get '/servers' do
-    #@servers = server.all
-   # erb :'/servers/index' 
-  #end
-    
-  #get '/servers/new' do 
-  #  if !is_logged_in?
-      #erb :'/servers/new'
-   # else
-      #redirect to '/servers/show'
-    #end
-  #end
-    
-  #post '/servers' do
-  #end
+  
      
   get '/servers/:id/edit' do 
     @server = server.find(params[:id])
@@ -70,11 +56,4 @@ class ServerController < ApplicationController
     erb :'/servers/show'
   end
     
-  patch '/servers/:id' do 
-       
-  end
-  
-  delete '/servers/:id' do
-  end
-
 end

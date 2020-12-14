@@ -56,7 +56,7 @@ class OrderController < ApplicationController
             @order = Order.find_by_id(params[:id])
             if @order && @order.server_id == current_server[:id]
               if @order.update(drink: params[:drink], tbl_num: params[:tbl_num], quantity: params[:quantity])
-                redirect to "/servers/:id"
+                 redirect to "/servers/#{server.id}"
               else
                 redirect to "/orders/#{@order.id}/edit"
               end
@@ -74,7 +74,7 @@ class OrderController < ApplicationController
           if @order && @order.server_id == current_server[:id]
             @order.delete
           end
-          redirect to '/servers/:id'
+          redirect to "/servers/#{server.id}"
         else
           redirect to '/log_in'
         end
