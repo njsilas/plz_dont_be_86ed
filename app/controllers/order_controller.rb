@@ -27,7 +27,7 @@ class OrderController < ApplicationController
         redirect to "/servers/#{current_server.id}"
       end
     end
-      get '/orders/:id' do  
+    get '/orders/:id' do  
         @order = Order.find_by_id(params[:id])
         if current_server[:id] == @order[:server_id]
         erb :'/orders/show'

@@ -16,7 +16,7 @@ class ServerController < ApplicationController
       session[:server_id] = server.id
       redirect to '/servers/:id'
     else
-      flash[:clock_in_error] = "Name or passowrd incorrect. Please try again"
+      
       
       redirect to '/log_in'
     end

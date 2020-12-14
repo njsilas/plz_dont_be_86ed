@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "work_in_progress"
-    set :show_exceptions, true
+    set :show_exceptions, false
   end
   not_found do
     status 404
