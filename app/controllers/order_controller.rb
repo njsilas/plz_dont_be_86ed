@@ -20,6 +20,7 @@ class OrderController < ApplicationController
     
       post '/orders' do 
         if params[:drink] == "" || params[:tbl_num] == "" || params[:quantity] == ""
+          flash[:incomplete] = "Please fill out all sections. write N/A if not applicable"
           redirect to '/orders/new'
         else
         @order = current_server.orders.build(params)

@@ -1,5 +1,7 @@
 <h1>Clock in please</h1>
-
+<% if flash(:message) %>
+  <p style="color:red;"><%=flash[:message]%></p>
+<% end %> 
 <form method="post" action="/log_in">
   <input type="text" name="name" placeholder="Name:">
   <input type="password" name="password" placeholder="Password:">

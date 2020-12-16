@@ -7,7 +7,7 @@ class ServerController < ApplicationController
    if !is_logged_in?
     erb  :'/servers/log_in'
    else
-    redirect to "/servers/#{server.id}"
+    redirect to "/servers/:id"
    end
  end
   post '/log_in' do
@@ -17,7 +17,7 @@ class ServerController < ApplicationController
       redirect to "/servers/#{server.id}"
     else
       
-      
+      flash[:message] = "Password or name do not match. Please try again"
       redirect to '/log_in'
     end
   end
@@ -33,13 +33,15 @@ class ServerController < ApplicationController
    
     server = Server.new(params)
     if server.password.blank? || server.name.blank?
+      flash[:problem] = "Please input a password or add the first initial of your last name"
       redirect to '/servers/new'
     else
        server.save
        session[:server_id] = server.id
        if !!current_server
-        redirect to "/servers/#{server.id}"
+        redirect to "/servers/:id"
        else
+        flash[:problem] = "Please input a password or add the first initial of your last name"
         redirect to '/servers/new'
        end
     end

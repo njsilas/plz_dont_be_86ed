@@ -5,9 +5,11 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    register Sinatra::Flash
     enable :sessions
     set :session_secret, "work_in_progress"
-    set :show_exceptions, false
+    #set :show_exceptions, false
+    
   end
   not_found do
     status 404

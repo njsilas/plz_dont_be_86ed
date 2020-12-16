@@ -1,3 +1,6 @@
+<% if flash(:message) %>
+  <p style="color:red;"><%=flash[:problem]%></p>
+<% end %> 
 <h1>Welcome to the team kiddo!</h1>
 <form method="post" action="/servers/new">
   <input type="text" name="name" placeholder="Name:">

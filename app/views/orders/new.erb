@@ -1,3 +1,6 @@
+<% if flash(:message) %>
+  <p style="color:red;"><%=flash[:incomplete]%></p>
+<% end %> 
 <h1>Ring in an Order Here</h1>
 
 <form action="/orders" method="POST">
