@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash
     enable :sessions
     set :session_secret, "work_in_progress"
-    #set :show_exceptions, false
+    set :show_exceptions, false
     
   end
   not_found do
